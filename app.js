@@ -17,6 +17,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes)
 
+app.get("/", (_req, res) => {
+    res.send(`<h1>Application server on ${PORT}`)
+})
+
+app.get("*", (_req, res) => {
+    res.send(`<h1>Route not found on ${PORT}`)
+})
+
 try {
     app.listen(PORT, ()=> {
         console.log(`Application started on ${PORT}`);

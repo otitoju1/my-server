@@ -9,4 +9,6 @@ router.get('/api/v1/qrcode', UserController.getQrCode);
 router.get('/api/v1/users', UserController.getUsers);
 router.get('/api/v1/user/:id', UserController.getUser)
 
+// https://cloud.mongodb.com/v2/62048ffbb6912523f1c33de9#clusters
+
 module.exports = router;
