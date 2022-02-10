@@ -6,6 +6,7 @@ const routes = require('./index.routing');
 //const routes from './index.routing'
 const app = express();
 const PORT = 6000;
+
 const username = "otitoju";
 const password = "abcd1234";
 const cluster = "cluster0.joqfv";
