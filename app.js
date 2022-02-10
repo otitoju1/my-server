@@ -18,4 +18,9 @@ app.get('*', (req,res) => {
     res.json(`404 ERROR, PAGE NOT FOUND`)
 })
 //DATABASE CONNECTION
-mongoose.connect('mongodb://localhost:27017/food_recipe');
+const username = "otitoju";
+const password = "abcd1234";
+const cluster = "cluster0.joqfv";
+const dbname = "data_collections";
+const uri = `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`;
+mongoose.connect(uri);
