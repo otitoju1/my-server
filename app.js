@@ -22,13 +22,13 @@ app.use((req, res, next) => {
     next()
 });
 
-app.get("/", (_req, res) => {
-    res.send(`<h1>Application server on ${PORT}`)
-})
+// app.get("/", (_req, res) => {
+//     res.send(`<h1>Application server on ${PORT}`)
+// })
 
-app.get("*", (_req, res) => {
-    res.send(`<h1>Route not found on ${PORT}`)
-})
+// app.get("*", (_req, res) => {
+//     res.send(`<h1>Route not found on ${PORT}`)
+// })
 
 try {
     app.listen(PORT, ()=> {
