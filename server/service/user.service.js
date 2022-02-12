@@ -13,7 +13,7 @@ class UserService {
     static async get(http, id) {
         try {
             if(id) {
-                return http.findOne({ _id: id})
+                return http.findOne({ _id: id}).sort({ "_id": -1})
             }
             return http.find({})
         } catch (error) {
