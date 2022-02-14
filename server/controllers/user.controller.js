@@ -1,13 +1,13 @@
 const User = require('../model/user');
 const bcrypt = require('bcryptjs');
-const UserService = require('../service/user.service');
+const UserService = require('../service/http.service');
 const config = require("../config");
 const jwt = require("jsonwebtoken");
-const QRCode = require('qrcode')
+const QRCode = require('qrcode');
 
 class UserController {
 
-    static async getQrCode(req, res) {
+    static async getQrCode(_req, res) {
         try {
             let info = {
                 id: 1,
@@ -107,6 +107,50 @@ class UserController {
         try {
             let { id } = req.params
             const info = await UserService.get(User, id);
+            if(!info) {
+                return res.status(404).json({
+                    message: "Not found"
+                })
+            }
+            return res.status(200).json({
+                info: info
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    static async deleteUser(req, res) {
+        try {
+            let { id } = req.params
+            const info = await UserService.delete(User, id);
+            if(!info) {
+                return res.status(404).json({
+                    message: "Not found"
+                })
+            }
+            return res.status(200).json({
+                info: info
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    static async updateUser(req, res) {
+        let { id } = req.params
+        const info = await UserService.put(User, id);
+        try {
+            if(!info) {
+                return res.status(404).json({
+                    message: "Not found"
+                })
+            }
+            info.name = req.body.name || info.name
+            info.email = req.body.email || info.email
+            info.address = req.body.address || info.address
+            info.phone = req.body.phone || info.phone
+            await info.save()
             return res.status(200).json({
                 info: info
             })
