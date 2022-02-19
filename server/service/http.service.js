@@ -31,7 +31,7 @@ class UserService {
 
     static async put(http, id) {
         try {
-            return http.findOneAndUpdate({ _id: id })
+            return http.findOne({ _id: id })
         } catch (error) {
             return error
         }
