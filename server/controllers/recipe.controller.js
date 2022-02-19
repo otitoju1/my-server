@@ -83,7 +83,8 @@ class RecipeController {
             info.method = req.body.method || info.method
             await info.save()
             return res.status(200).json({
-                info: info
+                info: info,
+                message: 'successful'
             })
         } catch (error) {
             console.log(error)
