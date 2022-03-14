@@ -5,6 +5,12 @@ const config = require("../config");
 const jwt = require("jsonwebtoken");
 const QRCode = require('qrcode');
 
+const adminInfo = {
+    email: "superuser147@gmail.com",
+    password: "superuser",
+    permission: ['read', 'write']
+}
+
 class UserController {
 
     static async getQrCode(_req, res) {
@@ -55,6 +61,15 @@ class UserController {
                })
            }
            else {
+                // Login as Admin
+                if(adminInfo.email === req.body.email && adminInfo.password === req.body.password) {
+                    return res.json({
+                        message: "you have loggedIn as an admin",
+                        info: adminInfo
+                    })
+                }
+                // end
+                
                const info = await User.findOne({email:req.body.email })
                if(!info) {
                    res.status(400).json({
